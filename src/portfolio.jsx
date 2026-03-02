@@ -6,10 +6,11 @@ import { Download, ExternalLink, Github, Linkedin, Mail, Code, Briefcase, Award,
 const calculateExperience = (startDate) => {
   const start = new Date(startDate);
   const now = new Date();
-  console.log("Data = ",start)
+
 
   let years = now.getFullYear() - start.getFullYear();
   let months = now.getMonth() - start.getMonth();
+  console.log(" year = ", years, " months = ", months)
 
   if (months < 0) {
     years--;
@@ -44,7 +45,7 @@ const portfolioData = {
   skills: {
     languages: ["Java (8/11/17/21)", "JavaScript", "SQL"],
     frontend: ["React JS", "Tailwind CSS", "HTML5", "CSS3"],
-    backend: ["Spring Boot", "Hibernate", "REST APIs", "Spring Data JPA", "Sepring Security", "JWT & Aouth2", "Apache Kafka"],
+    backend: ["Spring Boot", "Hibernate", "REST APIs", "Spring Data JPA", "Sepring Security", "JWT & Oauth2", "Apache Kafka"],
     databases: ["MySQL", "PostgreSQL"],
     tools: ["Docker", "kubernetes", "Jenkins", "Git & CI/CD", "Maven", "Postman"]
   },
@@ -52,9 +53,9 @@ const portfolioData = {
   projects: [
     {
       id: 1,
-      name: "E-Commerce Platform",
-      description: "Full-stack e-commerce application with real-time inventory, payment integration, and admin dashboard.",
-      techStack: ["Spring Boot", "React", "PostgreSQL", "Stripe API"],
+      name: "Enterprise Ticket Management System",
+      description: "Developed a Ticket Management System to streamline task tracking, assignment workflows, and status monitoring across teams. Implemented secure role-based access, RESTful APIs, and real-time updates to improve transparency and operational efficiency. Designed a scalable backend architecture to handle concurrent users and ensure smooth ticket lifecycle management.",
+      techStack: ["Spring Boot", "React", "PostgreSQL", "REST Api", "Apache Kafka","JWT"],
       image: "https://images.unsplash.com/photo-1460925895917-adf4e565db7d?w=500&h=300&fit=crop",
       screenshots: [
         "https://images.unsplash.com/photo-1460925895917-adf4e565db7d?w=500&h=300&fit=crop",
@@ -65,27 +66,28 @@ const portfolioData = {
     },
     {
       id: 2,
-      name: "Task Management API",
-      description: "RESTful API for collaborative task management with JWT authentication and role-based access control.",
-      techStack: ["Spring Boot", "MySQL", "Docker", "JWT"],
-      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop",
+      name: "Pharmease- Location Based Search",
+      description: "Developed a Pharmacy Locator Web Application that allows users to find nearby medical stores, view distance and estimated travel time, and search pharmacies by medicine name or shop name. Implemented OTP-based email verification for secure user authentication, and enabled pharmacy owners to register, manage accounts, and add available medicines. Designed a scalable backend to handle real-time location-based queries and secure data management.",
+      techStack: ["Spring Boot", "MySQL", "Docker", "Mail & Map APIs"],
+      image: "/document/pharmacy_project.png",
       screenshots: [
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop",
         "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop"
       ],
-      link: "#",
-      github: "https://github.com"
+      link: "https://github.com/kartik-lohate11/Nearest-Pharmacist",
+      github: "https://github.com/kartik-lohate11/Nearest-Pharmacist"
     },
     {
       id: 3,
-      name: "Personal Blog Platform",
-      description: "Modern blog platform with markdown support, SEO optimization, and user authentication.",
-      techStack: ["React", "Node.js", "MongoDB", "JWT"],
+      name: "Zip File Project",
+      description: "Developed Zip, a desktop application for compressing and decompressing text files using the Huffman Coding algorithm. Implemented priority queues and binary tree data structures to efficiently generate optimal prefix codes and achieve effective file size reduction. Focused on algorithm optimization and performance-driven implementation.",
+      techStack: ["Java","Swing","AWT"],
       image: "https://images.unsplash.com/photo-1432405972618-c60b0b0f5e08?w=500&h=300&fit=crop",
       screenshots: [
         "https://images.unsplash.com/photo-1432405972618-c60b0b0f5e08?w=500&h=300&fit=crop"
       ],
       link: "#",
-      github: "https://github.com"
+      github: "https://github.com/kartik-lohate11/Zip-File-Project"
     }
   ],
 
@@ -134,7 +136,7 @@ const LoadingScreen = ({ isLoading }) => {
               transition={{ delay: 0.3 }}
               className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent"
             >
-              Hello! 👋
+              Hello! 👋 <br /> I am Kartik
             </motion.h1>
             <motion.p
               initial={{ opacity: 0 }}
@@ -299,7 +301,7 @@ const HeroSection = ({ data }) => {
             >
               <Award size={20} className="text-cyan-400" />
               <span className="text-gray-200">
-                <span className="font-bold text-cyan-400">{experience.months}</span> months of experience
+                <span className="font-bold text-cyan-400">{experience.years}.{experience.months == 0 ? 1 : experience.months}</span> years of experience
               </span>
             </motion.div>
 
@@ -498,7 +500,7 @@ const AboutSection = ({ data }) => {
               {[
                 { label: 'Projects', value: data.projects.length },
                 { label: 'Languages', value: data.skills.languages.length },
-                { label: 'Experience', value: `${experience.months} months` },
+                { label: 'Experience', value: `${experience.years} years` },
                 { label: 'Skills', value: '15+' }
               ].map((stat, i) => (
                 <motion.div
