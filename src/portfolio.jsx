@@ -8,6 +8,7 @@ import SkillsSection from './components/SkillsSection';
 import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import { portfolioData } from './data/portfolioData';
+import ChatApp from './components/ChatApp';
 
 export default function PortfolioApp() {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,6 +39,7 @@ export default function PortfolioApp() {
             <ProjectsSection projects={portfolioData.projects} />
             <SkillsSection skills={portfolioData.skills} />
             <ContactSection data={portfolioData} />
+            <ChatApp />
           </main>
           <Footer />
         </>
