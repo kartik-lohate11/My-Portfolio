@@ -8,15 +8,15 @@ const defaultSendQuery = async (query) => {
 
   const q = query.toLowerCase();
 
-  if (q.includes("skill") || q.includes("tech") || q.includes("stack") || q.includes("language")) {
+  if (q.includes("skill") || q.includes("tech") || q.includes("stack") || q.includes("language") || q.includes("microservice") || q.includes("grafana") || q.includes("test")) {
     return {
-      answer: "Kartik specializes in:\n• Backend: Java (8/11/17/21), Spring Boot, Hibernate, REST APIs, Spring Security, JWT, Apache Kafka\n• Frontend: React.js, Tailwind CSS, HTML5, CSS3\n• Databases: MySQL, PostgreSQL\n• DevOps & Tools: Docker, Kubernetes, Jenkins, Maven, Git CI/CD, Postman"
+      answer: "Kartik's Technical Skill Set:\n• Backend & Microservices: Java 17/21, Spring Boot, Spring Data JPA, Hibernate, Spring Security, JWT/OAuth2, Resilience4j (Circuit Breakers), Apache Kafka\n• Observability & Testing: Grafana, Prometheus, Micrometer, JUnit 5, Mockito, SonarQube, Postman\n• Databases: PostgreSQL, MySQL, MinIO Object Storage\n• Frontend: React.js (18), Tailwind CSS, HTML5, CSS3, Vite\n• DevOps: Docker, Kubernetes, Jenkins CI/CD, Maven, Git"
     };
   }
 
-  if (q.includes("project") || q.includes("work") || q.includes("build") || q.includes("pharmease") || q.includes("ticket") || q.includes("zip")) {
+  if (q.includes("project") || q.includes("work") || q.includes("build") || q.includes("cloudnest") || q.includes("pharmease") || q.includes("ticket") || q.includes("zip")) {
     return {
-      answer: "Here are Kartik's key featured projects:\n\n1. 🏢 Enterprise Ticket Management System: Scalable backend with Spring Boot, React, Kafka, JWT & PostgreSQL for workflow management.\n2. 💊 Pharmease: Location-based pharmacy finder with OTP email verification & map APIs.\n3. 🗜️ Huffman Zip File Project: Desktop app utilizing Huffman Coding algorithm, binary trees & priority queues in Java."
+      answer: "Kartik's Key Projects:\n\n1. ☁️ CloudNest: Cloud file storage & workspace platform with MinIO object storage, OAuth2 & JWT auth.\n2. 🏢 Enterprise Ticket Management System: Microservices backend with Spring Boot, React, Kafka, JWT & PostgreSQL.\n3. 💊 Pharmease: Location-based pharmacy finder with OTP email verification & Map APIs.\n4. 🗜️ Huffman Zip File Project: Desktop app utilizing Huffman Coding algorithm & binary tree compression in Java."
     };
   }
 
@@ -34,7 +34,7 @@ const defaultSendQuery = async (query) => {
 
   if (q.includes("resume") || q.includes("cv") || q.includes("pdf")) {
     return {
-      answer: "You can download Kartik's latest resume directly using the 'Download Resume' button in the Hero section or find it at /document/kartik_java_developer.pdf!"
+      answer: "You can download Kartik's latest resume directly using the 'Download Resume' button in the Hero section or find it at /document/kartikResume_Java.pdf!"
     };
   }
 

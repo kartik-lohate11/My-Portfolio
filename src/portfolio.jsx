@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import LoadingScreen from './components/LoadingScreen';
+import React from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import AboutSection from './components/AboutSection';
@@ -11,16 +10,6 @@ import { portfolioData } from './data/portfolioData';
 import ChatApp from './components/ChatApp';
 
 export default function PortfolioApp() {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1200);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden relative selection:bg-purple-500 selection:text-white">
       {/* Background Ambience Layer */}
@@ -28,22 +17,16 @@ export default function PortfolioApp() {
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950/10 to-slate-950" />
       </div>
 
-      <LoadingScreen isLoading={isLoading} />
-
-      {!isLoading && (
-        <>
-          <Navbar />
-          <main>
-            <HeroSection data={portfolioData} />
-            <AboutSection data={portfolioData} />
-            <ProjectsSection projects={portfolioData.projects} />
-            <SkillsSection skills={portfolioData.skills} />
-            <ContactSection data={portfolioData} />
-            <ChatApp />
-          </main>
-          <Footer />
-        </>
-      )}
+      <Navbar />
+      <main>
+        <HeroSection data={portfolioData} />
+        <AboutSection data={portfolioData} />
+        <ProjectsSection projects={portfolioData.projects} />
+        <SkillsSection skills={portfolioData.skills} />
+        <ContactSection data={portfolioData} />
+        <ChatApp />
+      </main>
+      <Footer />
     </div>
   );
 }

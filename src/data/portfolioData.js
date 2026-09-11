@@ -7,10 +7,10 @@ export const portfolioData = {
     email: "kartiklohate2003@gmail.com",
     phone: "+91 7415950037",
     location: "Gurgaon, India",
-    bio: "Passionate developer crafting elegant solutions with Spring Boot and React. Building scalable applications with modern tech stack."
+    bio: "Passionate developer crafting elegant solutions with Spring Boot, Microservices, and React. Building scalable, resilient applications with modern cloud architecture."
   },
 
-  resume: "/document/kartik_java_developer.pdf",
+  resume: "/document/kartikResume_Java.pdf",
 
   social: [
     { icon: "github", label: "GitHub", url: "https://github.com/kartik-lohate11" },
@@ -20,51 +20,162 @@ export const portfolioData = {
   ],
 
   skills: {
-    languages: ["Java (8/11/17/21)", "JavaScript", "SQL"],
-    frontend: ["React JS", "Tailwind CSS", "HTML5", "CSS3"],
-    backend: ["Spring Boot", "Hibernate", "REST APIs", "Spring Data JPA", "Spring Security", "JWT & OAuth2", "Apache Kafka"],
-    databases: ["MySQL", "PostgreSQL"],
-    tools: ["Docker", "Kubernetes", "Jenkins", "Git & CI/CD", "Maven", "Postman"]
+    languages: ["Java (17/21)", "Python","JavaScript", "SQL"],
+    backend: ["Spring Boot", "Spring Data JPA", "Hibernate ORM", "Spring Security", "JWT & OAuth2", "RESTful APIs"],
+    microservices: ["Microservices Architecture", "Resilience4j (Circuit Breakers)", "Apache Kafka (Event-Driven)", "Spring Cloud Gateway", "API Gateway", "Eureka Service Registry"],
+    testing_observability: ["Grafana & Dashboards", "Prometheus Metrics", "JUnit 5 & Mockito", "SonarQube (Code Quality)", "Micrometer & Tracing", "Postman API Automation"],
+    databases: ["MySQL", "PostgreSQL", "Database Optimization"],
+    frontend: ["React.js (18)", "Tailwind CSS", "HTML5 & CSS3", "Vite & Context API"],
+    tools: ["Docker & Containers", "Kubernetes", "Jenkins & CI/CD", "Maven", "Git & GitHub"]
   },
 
   projects: [
     {
       id: 1,
-      name: "Enterprise Ticket Management System",
-      description: "Developed a Ticket Management System to streamline task tracking, assignment workflows, and status monitoring across teams. Implemented secure role-based access, RESTful APIs, and real-time updates to improve transparency and operational efficiency. Designed a scalable backend architecture to handle concurrent users and ensure smooth ticket lifecycle management.",
-      techStack: ["Spring Boot", "React", "PostgreSQL", "REST APIs", "Apache Kafka", "JWT"],
-      image: "https://images.unsplash.com/photo-1460925895917-adf4e565db7d?w=500&h=300&fit=crop",
-      screenshots: [
-        "https://images.unsplash.com/photo-1460925895917-adf4e565db7d?w=500&h=300&fit=crop",
-        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop"
+      name: "CloudNest – Cloud File Storage Platform",
+      category: "Cloud Storage & Personal Workspace",
+      tagline: "A modern cloud file storage and personal workspace platform inspired by Google Drive",
+      description: "CloudNest is a full-stack cloud file storage platform that allows users to securely upload, manage, search, download, share, archive, and organize their files through a modern personal workspace.",
+      overview: "Designed and developed a full-featured cloud storage platform with secure authentication, file lifecycle management, cloud object storage integration, search capabilities, and public file sharing. The application provides users with a centralized workspace for managing documents, images, PDFs, CSV files, ZIP files, and other digital assets.",
+      bulletPoints: [
+        "Secure Authentication: Implemented user registration, login, JWT-based authentication, password recovery using OTP, and Google/GitHub OAuth2 login.",
+        "Cloud File Management: Built complete file lifecycle functionality including upload, download, delete, archive, trash, restore, and file organization.",
+        "Object Storage Integration: Integrated MinIO for scalable object storage while maintaining file metadata such as file name, type, size, bucket, owner, and timestamps in MySQL.",
+        "Advanced Search: Implemented dynamic file searching and filtering using Spring Data JPA Specifications.",
+        "Secure File Sharing: Designed a token-based public file sharing mechanism allowing users to securely access shared files through generated links.",
+        "Personal Workspace Dashboard: Built an interactive React dashboard displaying file categories including Excel, CSV, PDF, ZIP, and overall storage information.",
+        "Security & Authorization: Protected application APIs using Spring Security, JWT authentication, and OAuth2-based social login.",
+        "Modern Full-Stack Architecture: Developed a React frontend with a Spring Boot REST API backend and cloud-based object storage integration."
       ],
-      link: "https://github.com/kartik-lohate11",
-      github: "https://github.com/kartik-lohate11"
+      techStack: [
+        "Java",
+        "Spring Boot",
+        "React",
+        "MySQL",
+        "MinIO",
+        "Spring Security",
+        "JWT",
+        "OAuth2",
+        "REST APIs",
+        "Docker"
+      ],
+      techCategorized: {
+        backend: [
+          "Java 17",
+          "Spring Boot",
+          "Spring Security",
+          "Spring Data JPA",
+          "Hibernate",
+          "JWT",
+          "OAuth2",
+          "REST APIs"
+        ],
+        frontend: [
+          "React 18",
+          "Vite",
+          "React Router",
+          "Context API"
+        ],
+        database: [
+          "MySQL",
+          "JPA / Hibernate"
+        ],
+        cloud: [
+          "MinIO Object Storage",
+          "Cloud Deployment"
+        ],
+        devops: [
+          "Docker",
+          "Maven",
+          "Git",
+          "Postman"
+        ]
+      },
+      metrics: [
+        { label: "Authentication", value: "JWT + OAuth2" },
+        { label: "Storage", value: "MinIO Object Storage" },
+        { label: "File Limit", value: "Up to 100 MB" },
+        { label: "Architecture", value: "Full-Stack REST APIs" }
+      ],
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=700&fit=crop",
+      screenshots: [
+        "/document/cloud_1.png",
+        "/document/cloud_2.png",
+        "/document/cloud_3.png",
+        "/document/cloud_4.png"
+      ],
+      link: "https://cloudnest-cloud-file-storage-platform.kartiklohate8.workers.dev/login",
+      github: "https://github.com/kartik-lohate11/CloudNest-Cloud-File-Storage-Platform",
+      featured: true
     },
     {
       id: 2,
       name: "Pharmease - Location Based Search",
-      description: "Developed a Pharmacy Locator Web Application that allows users to find nearby medical stores, view distance and estimated travel time, and search pharmacies by medicine name or shop name. Implemented OTP-based email verification for secure user authentication, and enabled pharmacy owners to register, manage accounts, and add available medicines. Designed a scalable backend to handle real-time location-based queries and secure data management.",
-      techStack: ["Spring Boot", "MySQL", "Docker", "Mail & Map APIs"],
+      category: "Full Stack & Cloud",
+      tagline: "Real-Time Proximity Pharmacy Locator & Medicine Availability Engine",
+      description: "A smart geospatial web application enabling users to locate nearby pharmacies, verify medicine stocks in real-time, and calculate travel times.",
+      overview: "Developed to bridge the gap between patients and local medical stores through intelligent distance calculation, automated OTP onboarding, and real-time inventory management.",
+      bulletPoints: [
+        "Geospatial Distance Calculation: Integrated Map and Geocoding APIs to dynamically compute proximity, route directions, and estimated arrival times to neighboring medical shops.",
+        "Multi-Parametric Medicine Search: Built instant search capabilities allowing customers to query by brand name, generic salt, or specific pharmacy inventory.",
+        "Secure OTP Email Verification: Implemented automated two-factor email OTP validation using Java Mail Sender for authenticated user signups and store owner onboarding.",
+        "Store Owner Inventory Portal: Created dedicated merchant dashboards enabling pharmacists to update stock statuses, price tags, and business hours in real time.",
+        "Containerized Architecture: Containerized the entire Spring Boot service and MySQL database instances with Docker for predictable production staging."
+      ],
+      techStack: ["Spring Boot", "MySQL", "Docker", "Map APIs", "Java Mail", "REST APIs"],
+      techCategorized: {
+        backend: ["Java 17", "Spring Boot", "Spring Data JPA", "Java Mail API"],
+        frontend: ["HTML5", "CSS3 / Tailwind", "JavaScript"],
+        database: ["MySQL"],
+        devops: ["Docker", "Google Maps API", "Postman", "Maven"]
+      },
+      metrics: [
+        { label: "Geolocation", value: "Real-time Map APIs" },
+        { label: "Auth", value: "Email OTP 2FA" },
+        { label: "Deployment", value: "Dockerized" }
+      ],
       image: "/document/pharmacy_project.png",
       screenshots: [
         "/document/pharmacy_project.png",
-        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop"
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=800&h=500&fit=crop"
       ],
-      link: "https://github.com/kartik-lohate11/Nearest-Pharmacist",
-      github: "https://github.com/kartik-lohate11/Nearest-Pharmacist"
+      link: "https://cloudnest-cloud-file-storage-platform.kartiklohate8.workers.dev/login",
+      github: "https://github.com/kartik-lohate11/CloudNest-Cloud-File-Storage-Platform",
+      featured: true
     },
     {
       id: 3,
-      name: "Zip File Project",
-      description: "Developed Zip, a desktop application for compressing and decompressing text files using the Huffman Coding algorithm. Implemented priority queues and binary tree data structures to efficiently generate optimal prefix codes and achieve effective file size reduction. Focused on algorithm optimization and performance-driven implementation.",
-      techStack: ["Java", "Swing", "AWT", "Data Structures"],
-      image: "https://images.unsplash.com/photo-1432405972618-c60b0b0f5e08?w=500&h=300&fit=crop",
+      name: "Zip File Project (Huffman Compression)",
+      category: "Core Java & DSA",
+      tagline: "High-Performance File Compression & Decompression Desktop Application",
+      description: "A desktop tool that compresses and decompresses text files efficiently using lossless Huffman Coding algorithms and priority queue tree traversal.",
+      overview: "Designed for deep algorithm optimization, achieving substantial storage savings on large text files through custom data structures and bit-level file streaming.",
+      bulletPoints: [
+        "Huffman Coding Implementation: Developed lossless prefix-code compression based on character frequency histograms to minimize file storage footprint.",
+        "Data Structure Optimization: Leveraged Min-Heap Priority Queues and Binary Trees to construct canonical Huffman prefix trees with O(N log N) time complexity.",
+        "High Compression Ratio: Successfully achieved 40% to 50% storage size reduction on standard ASCII text files with 100% data integrity on decompression.",
+        "Desktop GUI Experience: Crafted a user-friendly desktop GUI utilizing Java Swing and AWT with real-time compression progress meters and file size statistics.",
+        "Bit-Level Stream Handling: Implemented robust binary file I/O streams for bit packing and byte alignment, ensuring optimal performance on large files."
+      ],
+      techStack: ["Core Java", "Huffman Coding", "Data Structures", "Java Swing", "AWT", "File I/O"],
+      techCategorized: {
+        backend: ["Core Java (JDK 17/21)", "Huffman Algorithm", "Min-Heap", "Binary Trees"],
+        frontend: ["Java Swing", "Java AWT", "Custom UI Layouts"],
+        database: ["Binary File Streams", "Serialization"],
+        devops: ["Git", "Maven", "JUnit Testing"]
+      },
+      metrics: [
+        { label: "Compression", value: "40-50% Reduction" },
+        { label: "Algorithm", value: "Huffman Coding" },
+        { label: "Complexity", value: "O(N log N)" }
+      ],
+      image: "document/zip.png",
       screenshots: [
-        "https://images.unsplash.com/photo-1432405972618-c60b0b0f5e08?w=500&h=300&fit=crop"
+        "document/zip.png"
       ],
       link: "https://github.com/kartik-lohate11/Zip-File-Project",
-      github: "https://github.com/kartik-lohate11/Zip-File-Project"
+      github: "https://github.com/kartik-lohate11/Zip-File-Project",
+      featured: true
     }
   ],
 
