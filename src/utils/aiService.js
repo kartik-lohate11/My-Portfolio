@@ -28,12 +28,19 @@ Never sound like a rejection.
 • Resume: Available to download from the header/hero section (${portfolioData.resume})
 
 --- WORK EXPERIENCE ---
-1. Avendum Technology Private Limited | Software Developer (Feb 2025 – Present)
-   - Architected Java/Spring Boot enterprise backend for network asset tracking.
-   - Implemented real-time Apache Kafka pipelines, secured APIs via Spring Security (RBAC + JWT), optimized database queries.
+1. Avendum Technology Private Limited (Airtel) | Software Developer (Feb 2025 – Present)
+    Developed REST APIs for Pan-India Airtel network management, enabling users to plan, deploy, shift traffic,
+and dismantle network sites through defined lifecycle workflows.– Implemented workflow logic for network deployment, traffic shifting, and dismantling, handling business
+rules, status transitions, validations, and role-based actions across the asset lifecycle.– Built bulk processing features for large-scale network operations, using Spring Batch and multi-threading to
+process 500K+ records while reducing manual effort for users.– Improved application reliability through centralized exception handling and structured logging with SLF4J and
+Logback, simplifying debugging and production issue tracking
+
 2. Netlink Software Private Limited | Java Developer Intern (Sep 2024 – Dec 2024)
-   - Developed custom Java ETL tool for financial data migration; processed 500K+ daily records using Apache Spark.
-   - Built RESTful APIs with high throughput and low integration latency.
+    Developed a high-performance Data Connector using Scala and Play Framework to fetch unstructured data
+through non-blocking I/O, supporting 1,000+ concurrent requests in high-concurrency environments.– Processed unstructured datasets using Apache Spark (RDDs/DataFrames) and optimized persistence with
+JDBC batch processing, achieving 98% data consistency and reducing latency by 35% for daily workloads
+over 500K+ records.– Collaborated in an Agile/Scrum environment to deliver 20+ RESTful endpoints for JSON/XML
+communication and used Docker to package the Data Connector for UAT deployment and testing.
 
 --- TECHNICAL SKILLS ---
 • Languages: Java (8/11/17/21), Python, JavaScript, SQL
@@ -47,6 +54,15 @@ Never sound like a rejection.
 1. CloudNest (Cloud File Storage Platform): Full-stack Google Drive-inspired workspace. Features MinIO object storage, OAuth2 + JWT auth, file lifecycle (trash, restore, share links), Spring Data JPA specifications, and React dashboard.
 2. Pharmease (Location-Based Search): Proximity medical store locator with dynamic map distance calculation, OTP email 2FA verification, and merchant medicine inventory portal.
 3. Zip File Project (Huffman Compression): Core Java desktop tool (Swing/AWT) achieving 40-50% lossless file size reduction using Min-Heap priority queues & binary prefix tree traversal.
+4. TinyRoute (URL Shortener & Link Management): Full-stack Spring Boot + React platform for creating, managing, and tracking short links.
+   - Base62 short-code generation (7-char) from DB IDs.
+   - Full URL lifecycle: create, read, update, delete, duplicate validation, click tracking.
+   - User→URL one-to-many ownership model.
+   - Redis caching for hot user/URL data to cut DB hits.
+   - JPA/Hibernate with DTO projections for lean queries.
+   - Click analytics + dashboard, profile, auth pages in React 18.
+   - Stack: Java, Spring Boot, Spring Security, JWT/OAuth2, MySQL, Redis, Docker, Vite, Axios.
+   - GitHub: https://github.com/kartik-lohate11/TinyRoute---A-Scalable-URL-Shortening-Service
 
 --- INSTRUCTIONS ---
 - Always be helpful, confident, polite, and concise.
@@ -64,7 +80,7 @@ const localFallbackQuery = (text) => {
     };
   }
 
-  if (q.includes("project") || q.includes("cloudnest") || q.includes("pharmease") || q.includes("zip") || q.includes("work")) {
+ if (q.includes("project") || q.includes("cloudnest") || q.includes("pharmease") || q.includes("zip") || q.includes("tinyroute") || q.includes("url short") || q.includes("work")) {
     return {
       answer: "Kartik's Featured Projects:\n\n1. ☁️ CloudNest: Cloud storage platform with MinIO object storage, OAuth2/JWT auth & React.\n2. 💊 Pharmease: Proximity pharmacy finder with Map APIs & OTP verification.\n3. 🗜️ Zip File Tool: Lossless Huffman compression desktop application in Core Java."
     };
@@ -81,6 +97,12 @@ const localFallbackQuery = (text) => {
       answer: `You can reach Kartik Lohate directly:\n\n📧 Email: ${portfolioData.personal.email}\n📞 Phone: ${portfolioData.personal.phone}\n📍 Location: ${portfolioData.personal.location}\n🐙 GitHub: https://github.com/kartik-lohate11`
     };
   }
+
+  if (q.includes("tinyroute") || q.includes("url") || q.includes("short")) {
+  return {
+    answer: "TinyRoute — URL Shortener:\n\n• Spring Boot + React full-stack link management\n• Base62 7-char short codes from DB IDs\n• Redis caching + click analytics\n• JWT/OAuth2-secured user-owned links\n• MySQL + JPA/Hibernate with DTO projections\nGitHub: github.com/kartik-lohate11/TinyRoute"
+  };
+}
 
   if (q.includes("resume") || q.includes("cv")) {
     return {

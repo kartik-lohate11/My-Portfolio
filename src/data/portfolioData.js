@@ -20,7 +20,7 @@ export const portfolioData = {
   ],
 
   skills: {
-    languages: ["Java (17/21)", "Python","JavaScript", "SQL"],
+    languages: ["Java (17/21)", "Python", "JavaScript", "SQL"],
     backend: ["Spring Boot", "Spring Data JPA", "Hibernate ORM", "Spring Security", "JWT & OAuth2", "RESTful APIs"],
     microservices: ["Microservices Architecture", "Resilience4j (Circuit Breakers)", "Apache Kafka (Event-Driven)", "Spring Cloud Gateway", "Redis", "Eureka Service Registry"],
     testing_observability: ["Grafana & Dashboards", "Prometheus Metrics", "JUnit 5 & Mockito", "SonarQube (Code Quality)", "Micrometer & Tracing", "Postman API Automation"],
@@ -110,6 +110,119 @@ export const portfolioData = {
     },
     {
       id: 2,
+      name: "TinyRoute – URL Shortener & Link Management Platform",
+      category: "URL Shortening & Link Management",
+      tagline: "A modern URL shortening platform for creating, managing, and tracking short links",
+      description:
+        "TinyRoute is a full-stack URL shortening platform that allows users to create, manage, update, delete, and track shortened URLs through a secure and responsive web application.",
+
+      overview:
+        "Designed and developed a full-stack URL shortening platform using Spring Boot and React, with a focus on clean REST API design, secure user management, efficient URL generation, caching, and link analytics. TinyRoute uses a Base62-based short-code generation strategy to create compact seven-character URLs while maintaining URL ownership and click tracking.",
+
+      bulletPoints: [
+        "URL Shortening: Implemented a Base62-based URL generation mechanism that converts database IDs into compact seven-character short URLs.",
+        "URL Management: Built complete URL lifecycle functionality including URL creation, retrieval, update, deletion, duplicate URL validation, and click tracking.",
+        "User-Based URL Management: Designed a one-to-many relationship between users and URLs, allowing each user to securely manage their own shortened links.",
+        "Fast URL Redirects: Implemented a dedicated redirect flow that resolves short URLs to their original destinations and tracks click activity.",
+        "Redis Caching: Integrated Redis to cache frequently accessed user data and URL information, reducing repeated database queries and improving application performance.",
+        "Secure Backend APIs: Designed REST APIs using Spring Boot with a structure ready for Spring Security, JWT authentication, and OAuth2-based login.",
+        "Database Optimization: Used JPA/Hibernate with DTO projections to retrieve only required URL information and avoid unnecessary entity loading.",
+        "URL Analytics: Added click-count tracking and analytics-ready data structures to help users monitor the performance of their shortened URLs.",
+        "Responsive Web Application: Developed a React-based frontend with dedicated dashboard, URL management, analytics, profile, login, and registration experiences.",
+        "Clean Backend Architecture: Structured the application using controllers, services, repositories, DTOs, entities, and utility layers for maintainable and testable code."
+      ],
+
+      techStack: [
+        "Java",
+        "Spring Boot",
+        "Spring Data JPA",
+        "Hibernate",
+        "MySQL",
+        "Redis",
+        "React",
+        "JWT",
+        "OAuth2",
+        "REST APIs",
+        "Docker"
+      ],
+
+      techCategorized: {
+        backend: [
+          "Java",
+          "Spring Boot",
+          "Spring Security",
+          "Spring Data JPA",
+          "Hibernate",
+          "REST APIs"
+        ],
+
+        frontend: [
+          "React 18",
+          "Vite",
+          "React Router",
+          "Context API",
+          "Axios"
+        ],
+
+        database: [
+          "MySQL",
+          "JPA / Hibernate"
+        ],
+
+        caching: [
+          "Redis",
+          "Spring Data Redis"
+        ],
+
+        security: [
+          "JWT",
+          "OAuth2",
+          "Spring Security"
+        ],
+
+        devops: [
+          "Docker",
+          "Maven",
+          "Git",
+          "Postman"
+        ]
+      },
+
+      metrics: [
+        {
+          label: "Short Code",
+          value: "7-Character Base62"
+        },
+        {
+          label: "Caching",
+          value: "Redis"
+        },
+        {
+          label: "Backend",
+          value: "Spring Boot REST APIs"
+        },
+        {
+          label: "Database",
+          value: "MySQL"
+        }
+      ],
+
+      image:
+        "/document/Url_1.png",
+
+      screenshots: [
+        "/document/Url_1.png","/document/Url_2.png"
+      ],
+
+      link: "https://github.com/kartik-lohate11/TinyRoute---A-Scalable-URL-Shortening-Service",
+
+      github: "https://github.com/kartik-lohate11/TinyRoute---A-Scalable-URL-Shortening-Service",
+
+      featured: true
+    },
+
+    {
+      id: 3,
       name: "Pharmease - Location Based Search",
       category: "Full Stack & Cloud",
       tagline: "Real-Time Proximity Pharmacy Locator & Medicine Availability Engine",
@@ -144,7 +257,7 @@ export const portfolioData = {
       featured: true
     },
     {
-      id: 3,
+      id: 4,
       name: "Zip File Project (Huffman Compression)",
       category: "Core Java & DSA",
       tagline: "High-Performance File Compression & Decompression Desktop Application",

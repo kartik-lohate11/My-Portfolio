@@ -155,7 +155,7 @@ function ChatApp({ theme, customSendQuery }) {
                   {brandName}
                 </span>
                 <span className="status-badge">
-                  <span className="online-dot"></span> Groq Active
+                  <span className="online-dot"></span> Online
                 </span>
               </div>
               <div className="header-actions">
