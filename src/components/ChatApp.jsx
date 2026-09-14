@@ -1,55 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import "../css/ChatApp.css";
+import { sendGroqChatQuery } from "../utils/aiService";
+import { Sparkles, Send, X, Bot, User } from "lucide-react";
 
-// Built-in intelligent portfolio knowledge responder
-const defaultSendQuery = async (query) => {
-  // Simulate natural AI thinking delay
-  await new Promise((resolve) => setTimeout(resolve, 600));
-
-  const q = query.toLowerCase();
-
-  if (q.includes("skill") || q.includes("tech") || q.includes("stack") || q.includes("language") || q.includes("microservice") || q.includes("grafana") || q.includes("test")) {
-    return {
-      answer: "Kartik's Technical Skill Set:\n• Backend & Microservices: Java 17/21, Spring Boot, Spring Data JPA, Hibernate, Spring Security, JWT/OAuth2, Resilience4j (Circuit Breakers), Apache Kafka\n• Observability & Testing: Grafana, Prometheus, Micrometer, JUnit 5, Mockito, SonarQube, Postman\n• Databases: PostgreSQL, MySQL, MinIO Object Storage\n• Frontend: React.js (18), Tailwind CSS, HTML5, CSS3, Vite\n• DevOps: Docker, Kubernetes, Jenkins CI/CD, Maven, Git"
-    };
-  }
-
-  if (q.includes("project") || q.includes("work") || q.includes("build") || q.includes("cloudnest") || q.includes("pharmease") || q.includes("ticket") || q.includes("zip")) {
-    return {
-      answer: "Kartik's Key Projects:\n\n1. ☁️ CloudNest: Cloud file storage & workspace platform with MinIO object storage, OAuth2 & JWT auth.\n2. 🏢 Enterprise Ticket Management System: Microservices backend with Spring Boot, React, Kafka, JWT & PostgreSQL.\n3. 💊 Pharmease: Location-based pharmacy finder with OTP email verification & Map APIs.\n4. 🗜️ Huffman Zip File Project: Desktop app utilizing Huffman Coding algorithm & binary tree compression in Java."
-    };
-  }
-
-  if (q.includes("experience") || q.includes("company") || q.includes("avendum") || q.includes("netlink") || q.includes("job")) {
-    return {
-      answer: "Kartik's Professional Experience:\n\n• Software Developer at Avendum Technology (Feb 2025 – Present): Architected Java Spring Boot backend, real-time Kafka pipelines & RBAC JWT security.\n• Java Developer Intern at Netlink Software (Sep 2024 – Dec 2024): Built custom Java ETL data migration tools & processed 500K+ daily records with Apache Spark."
-    };
-  }
-
-  if (q.includes("contact") || q.includes("email") || q.includes("phone") || q.includes("hire") || q.includes("reach") || q.includes("location")) {
-    return {
-      answer: "You can reach Kartik Lohate directly:\n\n📧 Email: kartiklohate2003@gmail.com\n📞 Phone: +91 7415950037\n📍 Location: Gurgaon, India\n🔗 LinkedIn: linkedin.com/in/kartik-lohate-java-developer\n🐙 GitHub: github.com/kartik-lohate11"
-    };
-  }
-
-  if (q.includes("resume") || q.includes("cv") || q.includes("pdf")) {
-    return {
-      answer: "You can download Kartik's latest resume directly using the 'Download Resume' button in the Hero section or find it at /document/kartikResume_Java.pdf!"
-    };
-  }
-
-  if (q.includes("hello") || q.includes("hi") || q.includes("hey") || q.includes("who are you")) {
-    return {
-      answer: "Hello! 👋 I am Kartik's AI Portfolio Assistant. I can tell you all about his Java & Spring Boot experience, projects, skills, and how to get in touch. What would you like to know?"
-    };
-  }
-
-  return {
-    answer: "Thanks for reaching out! Kartik is a dedicated Java Developer with expertise in Spring Boot, Microservices, and React. Feel free to ask about his projects, skills, work experience, or reach out to him directly at kartiklohate2003@gmail.com."
-  };
-};
-
-function ChatApp({ theme, sendQuery = defaultSendQuery }) {
+function ChatApp({ theme, customSendQuery }) {
   const [isOpen, setIsOpen] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [input, setInput] = useState("");
@@ -62,8 +16,8 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
     {
       sender: "bot",
       text: userName 
-        ? `Hello ${userName} 👋\nHow can I help you today? Ask me anything about Kartik's work!`
-        : "Hello! 👋\nI am Kartik's AI Assistant. Ask me anything about Kartik's projects, Java & Spring Boot experience, or technical skills!",
+        ? `Hello ${userName}! 👋 I am Kartik's AI Portfolio Assistant powered by Groq.\nAsk me anything about Kartik's Java/Spring Boot experience, CloudNest, Microservices, or technical stack!`
+        : "Hello! 👋 I am Kartik's AI Portfolio Assistant.\nAsk me anything about Kartik's Java/Spring Boot experience, CloudNest project, Microservices, skills, or contact info!",
       time: new Date(),
     },
   ]);
@@ -94,7 +48,7 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
     };
   }, [isOpen]);
 
-  // Apply theme variables if provided
+  // Apply custom theme CSS variables if provided
   useEffect(() => {
     if (theme && theme.chat) {
       const root = document.documentElement;
@@ -119,32 +73,25 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
     if (input.trim() === "") return;
 
     const text = input.trim();
-
-    setMessages((prev) => [
-      ...prev,
+    const newHistory = [
+      ...messages,
       { sender: "user", text, time: new Date() },
-    ]);
+    ];
 
+    setMessages(newHistory);
     setInput("");
     setLoading(true);
     setTyping(true);
 
     try {
-      const response = await sendQuery(text);
+      // Call Groq API or custom handler
+      const response = customSendQuery 
+        ? await customSendQuery(text, newHistory) 
+        : await sendGroqChatQuery(newHistory);
+
       setTyping(false);
 
-      let botReply = response?.answer || "I received your message! Kartik is open for new opportunities.";
-
-      if (response?.sources && response.sources.length > 0) {
-        botReply += `\n\n📚 Sources: ${response.sources.join(', ')}`;
-      }
-      if (response?.sql_used) {
-        botReply += `\n\n📊 SQL: ${response.sql_used}`;
-      }
-      if (response?.data) {
-        const dataStr = JSON.stringify(response.data, null, 2);
-        botReply += `\n\n📈 Data:\n${dataStr}`;
-      }
+      const botReply = response?.answer || "I received your query. Feel free to ask about Kartik's projects, Spring Boot experience, or contact info!";
 
       setMessages((prev) => [
         ...prev,
@@ -153,21 +100,13 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
     } catch (error) {
       setTyping(false);
 
-      let errorMessage = "⚠️ Something went wrong. Please try again.";
-
-      if (error?.message === 'RATE_LIMIT') {
-        errorMessage = "⏳ Too many requests. Please wait a moment.";
-      } else if (error?.message === 'INVALID_QUESTION') {
-        errorMessage = "❓ Please ask a valid question.";
-      } else if (error?.message === 'SERVER_ERROR') {
-        errorMessage = "🔧 Server error. Please try again later.";
-      } else if (error?.message === 'NETWORK_ERROR') {
-        errorMessage = "🌐 Network error. Please check your connection.";
-      }
-
       setMessages((prev) => [
         ...prev,
-        { sender: "bot", text: errorMessage, time: new Date() },
+        { 
+          sender: "bot", 
+          text: "I am having trouble reaching the AI service right now. Kartik is an experienced Java & Spring Boot Developer specializing in Microservices, Kafka, and Cloud architectures. Feel free to email him at kartiklohate2003@gmail.com!", 
+          time: new Date() 
+        },
       ]);
     }
 
@@ -186,9 +125,15 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
   return (
     <>
       {!isOpen && (
-        <div className="nexus-chat-icon" onClick={toggleChat} role="button" aria-label="Open Chat">
+        <div 
+          className="nexus-chat-icon" 
+          onClick={toggleChat} 
+          role="button" 
+          aria-label="Open AI Assistant"
+          title="Chat with Kartik's AI Assistant"
+        >
           <span className="brand-icon" style={{ color: brandIconColor }}>
-            {brandIcon}
+            <Sparkles size={20} className="text-cyan-300 animate-pulse" />
           </span>
           <span className="nexus-icon-text">{brandName}</span>
         </div>
@@ -205,12 +150,12 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
               <div className="header-left">
                 <span className="nexus-brand">
                   <span className="brand-icon" style={{ color: brandIconColor }}>
-                    {brandIcon}
+                    <Sparkles size={18} className="text-cyan-400" />
                   </span>
                   {brandName}
                 </span>
                 <span className="status-badge">
-                  <span className="online-dot"></span> Online
+                  <span className="online-dot"></span> Groq Active
                 </span>
               </div>
               <div className="header-actions">
@@ -228,13 +173,13 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
                   aria-label="Close Chat"
                   title="Close"
                 >
-                  ✕
+                  <X size={16} />
                 </button>
               </div>
             </div>
 
             {/* Body */}
-            <div className="nexus-chat-body">
+            <div className="nexus-chat-body custom-scrollbar">
               {messages.map((msg, index) => (
                 <div key={index} className={`message-wrapper ${msg.sender}`}>
                   <div className={`message ${msg.sender}`}>
@@ -264,12 +209,33 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
               <div ref={bottomRef}></div>
             </div>
 
+            {/* Quick Prompt Suggestions */}
+            <div className="px-3 pt-2 pb-1 bg-slate-950/80 border-t border-white/5 flex gap-1.5 overflow-x-auto no-scrollbar">
+              {[
+                "Tell me about Kartik's experience",
+                "What is CloudNest project?",
+                "What backend & microservices tech does Kartik use?",
+                "How to contact or hire Kartik?"
+              ].map((promptText, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setInput(promptText);
+                    inputRef.current?.focus();
+                  }}
+                  className="text-[11px] bg-purple-500/15 hover:bg-cyan-500/25 text-gray-300 hover:text-white px-2.5 py-1 rounded-full border border-purple-500/30 whitespace-nowrap transition-colors"
+                >
+                  {promptText}
+                </button>
+              ))}
+            </div>
+
             {/* Footer */}
             <div className="nexus-chat-footer">
               <input
                 ref={inputRef}
                 type="text"
-                placeholder={loading ? "Waiting for response..." : "Ask about skills, projects, contact..."}
+                placeholder={loading ? "Generating response with Groq..." : "Ask anything about Kartik's tech background..."}
                 value={input}
                 disabled={loading}
                 onChange={(e) => setInput(e.target.value)}
@@ -285,7 +251,7 @@ function ChatApp({ theme, sendQuery = defaultSendQuery }) {
                 onClick={sendMessage}
                 aria-label="Send message"
               >
-                <span className="send-icon">➤</span>
+                <Send size={16} className="send-icon" />
               </button>
             </div>
           </div>

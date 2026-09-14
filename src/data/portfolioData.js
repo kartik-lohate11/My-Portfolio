@@ -22,7 +22,7 @@ export const portfolioData = {
   skills: {
     languages: ["Java (17/21)", "Python","JavaScript", "SQL"],
     backend: ["Spring Boot", "Spring Data JPA", "Hibernate ORM", "Spring Security", "JWT & OAuth2", "RESTful APIs"],
-    microservices: ["Microservices Architecture", "Resilience4j (Circuit Breakers)", "Apache Kafka (Event-Driven)", "Spring Cloud Gateway", "API Gateway", "Eureka Service Registry"],
+    microservices: ["Microservices Architecture", "Resilience4j (Circuit Breakers)", "Apache Kafka (Event-Driven)", "Spring Cloud Gateway", "Redis", "Eureka Service Registry"],
     testing_observability: ["Grafana & Dashboards", "Prometheus Metrics", "JUnit 5 & Mockito", "SonarQube (Code Quality)", "Micrometer & Tracing", "Postman API Automation"],
     databases: ["MySQL", "PostgreSQL", "Database Optimization"],
     frontend: ["React.js (18)", "Tailwind CSS", "HTML5 & CSS3", "Vite & Context API"],
