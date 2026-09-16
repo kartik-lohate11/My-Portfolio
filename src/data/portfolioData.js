@@ -211,7 +211,7 @@ export const portfolioData = {
         "/document/url_img_1.png",
 
       screenshots: [
-        "/document/url_img_1.png","/document/url_img_1.png"
+        "/document/url_img_1.png","/document/url_img_2.png"
       ],
 
       link: "https://github.com/kartik-lohate11/TinyRoute---A-Scalable-URL-Shortening-Service",
