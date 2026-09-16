@@ -208,7 +208,7 @@ export const portfolioData = {
       ],
 
       image:
-        "/document/Url_1.png",
+        "/document/url_img_1.png",
 
       screenshots: [
         "/document/url_img_1.png","/document/url_img_1.png"
